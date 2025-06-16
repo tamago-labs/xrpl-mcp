@@ -1,0 +1,63 @@
+{
+    "name": "@tamago-labs/xrpl-mcp",
+    "version": "0.1.0",
+    "description": "MCP server implementation for XRP Ledger",
+    "main": "dist/index.js",
+    "module": "./dist/index.mjs",
+    "types": "./dist/index.d.ts",
+    "bin": {
+        "xrpl-mcp": "dist/index.js"
+    },
+    "files": [
+        "dist"
+    ],
+    "keywords": [
+        "rwa",
+        "real-world-assets",
+        "tokenization",
+        "xrpl",
+        "xrp-ledger",
+        "mcp",
+        "model-context-protocol",
+        "ai-assisted",
+        "defi",
+        "claude",
+        "blockchain"
+    ],
+    "scripts": {
+        "build": "tsup",
+        "prepare": "npm run build",
+        "test": "jest",
+        "start": "node dist/index.js",
+        "dev": "ts-node src/index.ts",
+        "setup:wallet": "ts-node scripts/setup-wallet.ts",
+        "verify": "ts-node scripts/verify-build.ts"
+    },
+    "repository": {
+        "type": "git",
+        "url": "git+https://github.com/tamago-labs/xrpl-mcp.git"
+    },
+    "author": "Pisuth",
+    "license": "MIT",
+    "bugs": {
+        "url": "https://github.com/tamago-labs/xrpl-mcp/issues"
+    },
+    "homepage": "https://tamagolabs.com",
+    "dependencies": {
+        "@modelcontextprotocol/sdk": "^1.10.2",
+        "xrpl": "^4.2.5",
+        "zod": "^3.24.3",
+        "bignumber.js": "^9.3.0",
+        "axios": "^1.9.0"
+    },
+    "devDependencies": {
+        "@types/node": "^22.15.2",
+        "typescript": "^5.8.3",
+        "tsup": "^8.4.0",
+        "jest": "^29.7.0",
+        "ts-jest": "^29.3.2",
+        "@types/jest": "^29.5.14",
+        "dotenv": "^16.5.0",
+        "ts-node": "^10.9.2"
+    }
+}
