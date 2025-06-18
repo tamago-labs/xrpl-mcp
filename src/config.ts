@@ -1,9 +1,7 @@
 #!/usr/bin/env node
 
-import * as dotenv from 'dotenv';
 import { XrplConfig } from './types';
 
-dotenv.config();
 
 const getArgs = () =>
     process.argv.reduce((args: any, arg: any) => {
@@ -28,7 +26,7 @@ export function validateEnvironment(): void {
     const args = getArgs();
 
     // Check if private key is provided
-    const hasPrivateKey = !!(args?.xrpl_private_key || process.env.XRPL_PRIVATE_KEY);
+    const hasPrivateKey = !!(args?.xrpl_private_key);
 
     if (!hasPrivateKey) {
         throw new Error(
@@ -37,7 +35,7 @@ export function validateEnvironment(): void {
     }
 
     // Network is required
-    const hasXrplNetwork = !!(args?.xrpl_network || process.env.XRPL_NETWORK);
+    const hasXrplNetwork = !!(args?.xrpl_network);
     if (!hasXrplNetwork) {
         throw new Error('Missing required environment variable: XRPL_NETWORK');
     }
@@ -49,14 +47,12 @@ export function getXrplConfig(): XrplConfig {
     const args = getArgs();
 
     const currentEnv = {
-        XRPL_PRIVATE_KEY: args?.xrpl_private_key || process.env.XRPL_PRIVATE_KEY,
-        XRPL_NETWORK: args?.xrpl_network || process.env.XRPL_NETWORK,
-        XRPL_SERVER: args?.xrpl_server || process.env.XRPL_SERVER,
+        XRPL_PRIVATE_KEY: args?.xrpl_private_key,
+        XRPL_NETWORK: args?.xrpl_network
     };
 
     return {
         privateKey: currentEnv.XRPL_PRIVATE_KEY!,
-        network: (currentEnv.XRPL_NETWORK || 'testnet') as 'testnet' | 'mainnet' | 'devnet',
-        server: currentEnv.XRPL_SERVER,
+        network: (currentEnv.XRPL_NETWORK || 'testnet') as 'testnet' | 'mainnet' | 'devnet'
     };
 }

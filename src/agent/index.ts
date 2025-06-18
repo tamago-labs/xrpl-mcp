@@ -22,7 +22,7 @@ export class Agent {
         const config = getXrplConfig();
         
         // Determine server URL
-        const serverUrl = config.server || NETWORKS[config.network];
+        const serverUrl = NETWORKS[config.network];
         
         this.client = new Client(serverUrl);
         this.network = config.network;
